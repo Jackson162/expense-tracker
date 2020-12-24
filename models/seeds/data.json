@@ -1,0 +1,56 @@
+{
+  "categories": [
+    {
+      "name": "家居物業",
+      "icon": "fas fa-home"
+    },
+    {
+      "name": "交通出行",
+      "icon": "fas fa-shuttle-van"
+    },
+    {
+      "name": "休閒娛樂",
+      "icon": "fas fa-grin-beam"
+    },
+    {
+      "name": "餐飲食品",
+      "icon": "fas fa-utensils"
+    },
+    {
+      "name": "其他",
+      "icon": "fas fa-pen"
+    }
+  ],
+  "records": [
+    {
+      "name": "房租",
+      "category": "家居物業",
+      "date": "2019/04/23",
+      "amount": 60
+    },
+    {
+      "name": "捷運",
+      "category": "交通出行",
+      "date": "2019/04/23",
+      "amount": 120
+    },
+    {
+      "name": "電影: 神力女超人",
+      "category": "休閒娛樂",
+      "date": "2020/12/31",
+      "amount": "99"
+    },
+    {
+      "name": "午餐: 教父牛排",
+      "category": "餐飲食品",
+      "date": "2020/12/31",
+      "amount": 3600
+    },
+    {
+      "name": "陶朱隱園",
+      "category": "其他",
+      "date": "2020/12/31",
+      "amount": 1500000000
+    }
+  ]
+}
