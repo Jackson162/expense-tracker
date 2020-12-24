@@ -1,0 +1,27 @@
+<div>
+  <span>*必填欄位</span>
+  <span>可修改支出紀錄</span>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <form action="/new" method="POST">
+        <label for="name">名稱*:</label>
+        <input type="text" name="name" id="name" value="{{record.name}}" required>
+        <label for="date">日期*:</label>
+        <input type="text" name="date" id="date" value="{{record.date}}" required>
+        <label for="category">類別*:</label>
+        <select name="" id="" required>
+          {{#each categories}}
+          <option value="{{this.name}}">{{this.name}}</option>
+          {{/each}}
+        </select>
+        <label for="amount">金額*:</label>
+        <input type="number" name="amount" id="amount" value="{{record.amount}}" required>
+      </form>
+    </div>
+    <form action="/expenses/new" method="POST">
+      <button type="submit">修改支出紀錄</button>
+    </form>
+  </div>
+</div>

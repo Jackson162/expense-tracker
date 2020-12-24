@@ -1,5 +1,9 @@
 <div>
-  <select name="" id=""></select>
+  <select name="category" id="category">
+    {{#each categories}}
+    <option value="{{name}}">{{name}}</option>
+    {{/each}}
+  </select>
 </div>
 <div>
   <h2>總金額:</h2>
@@ -23,7 +27,7 @@
         <div>{{amount}}</div>
 
         <div>
-          <a href="/edit">修改</a>
+          <a href="expenses/edit/{{_id}}">修改</a>
           <button>刪除</button>
         </div>
 
@@ -33,7 +37,5 @@
   </ul>
 </div>
 <div>
-  <form action="/new">
-    <button type="submit">新增支出</button>
-  </form>
+    <a href="/expenses/new">新增支出紀錄</a>
 </div>
