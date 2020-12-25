@@ -28,7 +28,14 @@
 
         <div>
           <a href="expenses/edit/{{_id}}">修改</a>
-          <button>刪除</button>
+          <button type="button" 
+                  class="fas fa-trash text-danger fa-lg btn btn-info" 
+                  data-toggle="modal" 
+                  data-target="#delete-modal-{{_id}}"
+                  style="background: transparent; border:none; padding: 0px">
+                  {{!-- data-bs-toggle does not work because we don't have v5 of Bootstrap --}}
+                  刪除
+          </button>
         </div>
 
       </div>
@@ -39,3 +46,22 @@
 <div>
     <a href="/expenses/new">新增支出紀錄</a>
 </div>
+
+{{!-- delete modal --}}
+{{#each records}}
+<div class="modal fade" id="delete-modal-{{_id}}" data-backdrop="static" tabindex="-1" data-keyboard="false" aria-labelledby="delete-modal-{{_id}}-Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        確定要刪除支出項目 <strong>{{name}}</strong> 嗎？
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal">取消</button>
+        <form action="/expenses/delete/{{_id}}?_method=DELETE" method="POST">
+            <button type="submit" class="btn btn-danger">確認刪除</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}

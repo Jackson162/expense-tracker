@@ -24,5 +24,11 @@ router.get('/edit/:_id', async (req, res) => {
   res.render('edit', { categories, record })
 })
 
+router.delete('/delete/:_id', async (req, res) => {
+  const id = req.params._id
+  await funcs.deleteOneData(Record, id)
+  res.redirect('/')
+})
+
 module.exports = router
 

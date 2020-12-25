@@ -11,11 +11,17 @@ const fetchAllData = async (model, sortOption) => {
   } 
 }
 
-const fetchOneData = async (model, id) => {
+const fetchOneData = (model, id) => {
   return model.findById(id)
     .lean()
     .then(data => data)
     .catch(err => console.log(err))
 }
 
-module.exports = { fetchAllData, fetchOneData }
+const deleteOneData = async (model, id) => {
+ return model.findById(id)
+  .then(data => data.remove())
+  .catch(err => console.log(err))
+}
+
+module.exports = { fetchAllData, fetchOneData, deleteOneData }
