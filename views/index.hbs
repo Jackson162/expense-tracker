@@ -1,10 +1,12 @@
 <div>
-  <select name="category" id="category">
-    <option value="all" selected>全部類別</option>
-    {{#each categories}}
-    <option value="{{name}}">{{name}}</option>
-    {{/each}}
-  </select>
+  <form action="/" method="GET" onchange="submit()">
+    <select name="category" id="category">
+      <option value="all">全部類別</option>
+      {{#each categories}}
+      <option value="{{this.name}}" {{#is this.name ../option}}selected{{/is}}>{{this.name}}</option>
+      {{/each}}
+    </select>
+  </form>
 </div>
 <div>
   <h2>總金額:</h2>
@@ -16,23 +18,22 @@
     <li class="list-group-item">
       <div class="row">
         
-        {{!-- err if using syntax: this.category or icons.name --}}
-        <div class="{{#with (lookup ../icons [category])}}{{name}}{{/with}}"></div>
+        {{!-- err if using syntax: [this.category] or {{icons.name}} --}}
+        <div class="{{#with (lookup ../icons [category])}}{{this.name}}{{/with}}"></div>
 
         <div>
-          {{!-- works without this even without #each records as | record | --}}
-          <div>{{name}}</div>
-          <div>{{date}}</div>
+          <div>{{this.name}}</div>
+          <div>{{this.date}}</div>
         </div>
 
-        <div>{{amount}}</div>
+        <div>{{this.amount}}</div>
 
         <div>
-          <a href="expenses/edit/{{_id}}">修改</a>
+          <a href="expenses/edit/{{this._id}}">修改</a>
           <button type="button" 
                   class="fas fa-trash text-danger fa-lg btn btn-info" 
                   data-toggle="modal" 
-                  data-target="#delete-modal-{{_id}}"
+                  data-target="#delete-modal-{{this._id}}"
                   style="background: transparent; border:none; padding: 0px">
                   {{!-- data-bs-toggle does not work because we don't have v5 of Bootstrap --}}
                   刪除
@@ -50,15 +51,15 @@
 
 {{!-- delete modal --}}
 {{#each records}}
-<div class="modal fade" id="delete-modal-{{_id}}" data-backdrop="static" tabindex="-1" data-keyboard="false" aria-labelledby="delete-modal-{{_id}}-Label" aria-hidden="true">
+<div class="modal fade" id="delete-modal-{{this._id}}" data-backdrop="static" tabindex="-1" data-keyboard="false" aria-labelledby="delete-modal-{{_id}}-Label" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
-        確定要刪除支出項目 <strong>{{name}}</strong> 嗎？
+        確定要刪除支出項目 <strong>{{this.name}}</strong> 嗎？
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-info" data-dismiss="modal">取消</button>
-        <form action="/expenses/delete/{{_id}}?_method=DELETE" method="POST">
+        <form action="/expenses/delete/{{this._id}}?_method=DELETE" method="POST">
             <button type="submit" class="btn btn-danger">確認刪除</button>
         </form>
       </div>

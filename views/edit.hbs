@@ -7,18 +7,20 @@
     <div class="col">
       <form action="/expenses/edit/{{record._id}}?_method=PUT" method="POST" id="edit-form">
         <label for="name">名稱*:</label>
-        <input type="text" name="name" id="name" value="{{record.name}}" required>
+        <input type="text" name="name" id="name" value="{{record.name}}" placeholder="支出名稱" required>
         <label for="date">日期*:</label>
-        <input type="text" name="date" id="date" value="{{record.date}}" required>
+        <input type="text" name="date" id="date" value="{{record.date}}" placeholder="支出日期 e.g.格式: YYYY/MM/DD"
+              pattern="\s*[0-9]{4}\/([1][0-2]|[0][1-9])\/([0][1-9]|[1-2][0-9]|[3][0-1])\s*" 
+              title="請符合: YYYY/MM/DD" required>
         <label for="category">類別*:</label>
-        <select name="" id="" required>
+        <select name="category" id="category" required>
           {{#each categories}}  
               {{!-- if use handlebars-helpers: {{#is this.name ../record.category}} --}} 
             <option value="{{this.name}}" {{#if (lookup ../option [name])}}selected{{/if}}>{{this.name}}</option>
           {{/each}}
         </select>
         <label for="amount">金額*:</label>
-        <input type="number" name="amount" id="amount" value="{{record.amount}}" required>
+        <input type="number" name="amount" id="amount" value="{{record.amount}}" placeholder="支出金額" required>
       </form>
     </div>
     <div>
