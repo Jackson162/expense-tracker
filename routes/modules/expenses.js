@@ -18,10 +18,18 @@ router.post('/new', (req, res) => {
 
 router.get('/edit/:_id', async (req, res) => {
   const id = req.params._id
-  const record = await funcs.fetchOneData(Record, id)
-  console.log(record)
   const categories = await funcs.fetchAllData(Category, '_id')
-  res.render('edit', { categories, record })
+  const record = await funcs.fetchOneData(Record, id)
+  const option = {}
+  option[record.category] = true
+  res.render('edit', { categories, record, option })
+})
+
+router.put('/edit/:_id', async (req, res) => {
+  const id = req.params._id
+  const editedInfo = req.body
+  await funcs.editOneData(Record, id, editedInfo)
+  res.redirect('/')
 })
 
 router.delete('/delete/:_id', async (req, res) => {

@@ -24,4 +24,13 @@ const deleteOneData = async (model, id) => {
   .catch(err => console.log(err))
 }
 
-module.exports = { fetchAllData, fetchOneData, deleteOneData }
+const editOneData = async (model, id, editedInfo) => {
+  return model.findById(id)
+    .then(data => {
+      Object.assign(data, editedInfo)
+      data.save()
+    })
+    .catch(err => console.log(err))
+}
+
+module.exports = { fetchAllData, fetchOneData, deleteOneData, editOneData }
