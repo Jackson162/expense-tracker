@@ -9,6 +9,13 @@ router.get('/new', async (req, res) => {
   res.render('new', { categories })
 })
 
+router.post('/new', (req, res) => {
+  const newExpense = req.body
+  Record.create(newExpense)
+    .then(() => res.redirect('/'))
+    .catch(err => err)
+})
+
 router.get('/edit/:_id', async (req, res) => {
   const id = req.params._id
   const record = await funcs.fetchOneData(Record, id)
