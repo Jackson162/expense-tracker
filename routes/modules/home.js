@@ -12,13 +12,16 @@ router.get('/', async (req, res) => {
   }
   const option = req.query.category 
   const records = await funcs.fetchAllData(Record, '-date')
+  const totalAmount = records.reduce((acc, record) => {
+    return acc + record.amount
+  }, 0)
   if (!option) {
-    return res.render('index', { records, option, icons, categories })
+    return res.render('index', { records, option, totalAmount, icons, categories })
   } else {
     const filteredRecords = !(option === 'all')? records.filter(record => {
       return record.category === option
     }) : records
-    res.render('index', { records: filteredRecords, option, icons, categories })
+    return res.render('index', { records: filteredRecords, totalAmount, option, icons, categories })
   }
 })
 

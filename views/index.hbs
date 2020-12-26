@@ -1,5 +1,6 @@
 <div>
-  <form action="/" method="GET" onchange="submit()">
+  <form class="d-flex justify-content-center align-items-center mt-3" action="/" method="GET" onchange="submit()">
+    <div class="fa fa-list-alt fa-lg mr-1" aria-hidden="true" for="category">類別：</div>
     <select name="category" id="category">
       <option value="all">全部類別</option>
       {{#each categories}}
@@ -8,60 +9,60 @@
     </select>
   </form>
 </div>
-<div>
-  <h2>總金額:</h2>
+<div class="d-flex justify-content-center mt-2">
+  <h1><strong>總金額：</strong></h1>
+  <h1><strong>{{totalAmount}}</strong></h1>
 </div>
-</div>
-<div>
+
+<div class="mb-3" id="ul-container">
   <ul class="list-group">
     {{#each records}}
     <li class="list-group-item">
       <div class="row">
-        
-        {{!-- err if using syntax: [this.category] or {{icons.name}} --}}
-        <div class="{{#with (lookup ../icons [category])}}{{this.name}}{{/with}}"></div>
-
-        <div>
-          <div>{{this.name}}</div>
-          <div>{{this.date}}</div>
+        <div class="item-start">
+              {{!-- err if using syntax: [this.category] or {{icons.name}} --}}
+          <div class="fa-3x mr-1 {{#with (lookup ../icons [category])}}{{this.name}}{{/with}}"></div>
+          <div class="ml-1">
+            <div>{{this.name}}</div>
+            <div>{{this.date}}</div>
+          </div>
         </div>
+      
+        <div class="item-money">
+          <div class="fas fa-money-bill-alt mr-1 fa-lg"></div>
+          <div>：{{this.amount}}</div>
+        </div>
+        
 
-        <div>{{this.amount}}</div>
-
-        <div>
-          <a href="expenses/edit/{{this._id}}">修改</a>
-          <button type="button" 
-                  class="fas fa-trash text-danger fa-lg btn btn-info" 
-                  data-toggle="modal" 
-                  data-target="#delete-modal-{{this._id}}"
-                  style="background: transparent; border:none; padding: 0px">
-                  {{!-- data-bs-toggle does not work because we don't have v5 of Bootstrap --}}
-                  刪除
+        <div class="item-end">
+          <a class="fas fa-edit text-dark" href="expenses/edit/{{this._id}}">修改</a>
+          <button type="button" class="fas fa-trash text-dark ml-1" data-toggle="modal"
+            data-target="#delete-modal-{{this._id}}" style="background: transparent; border:none; padding: 0px">
+            {{!-- data-bs-toggle does not work because we don't have v5 of Bootstrap --}}
+            刪除
           </button>
         </div>
-
+        
       </div>
     </li>
     {{/each}}
   </ul>
 </div>
-<div>
-    <a href="/expenses/new">新增支出紀錄</a>
-</div>
 
 {{!-- delete modal --}}
 {{#each records}}
-<div class="modal fade" id="delete-modal-{{this._id}}" data-backdrop="static" tabindex="-1" data-keyboard="false" aria-labelledby="delete-modal-{{_id}}-Label" aria-hidden="true">
+<div class="modal fade" id="delete-modal-{{this._id}}" data-backdrop="static" tabindex="-1" data-keyboard="false"
+  aria-labelledby="delete-modal-{{_id}}-Label" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
         確定要刪除支出項目 <strong>{{this.name}}</strong> 嗎？
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-info" data-dismiss="modal">取消</button>
         <form action="/expenses/delete/{{this._id}}?_method=DELETE" method="POST">
-            <button type="submit" class="btn btn-danger">確認刪除</button>
+          <button type="submit" class="btn">確認刪除</button>
         </form>
+        <button type="button" class="btn" data-dismiss="modal">取消</button>
       </div>
     </div>
   </div>

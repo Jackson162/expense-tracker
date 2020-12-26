@@ -1,29 +1,37 @@
-<div>
-  <span>*必填欄位</span>
-  <span>請填寫支出紀錄</span>
-</div>
 <div class="container">
-  <div class="row">
-    <div class="col">
-      <form action="/expenses/new" method="POST">
-        <label for="name">名稱*:</label>
-        <input type="text" name="name" id="name" placeholder="支出名稱" required>
-        <label for="date">日期*:</label>
-        {{!-- safari doesn't support type="date" --}}
-        <input type="text" name="date" id="date" placeholder="支出日期 e.g.格式: YYYY/MM/DD" 
-              pattern="\s*[0-9]{4}\/([1][0-2]|[0][1-9])\/([0][1-9]|[1-2][0-9]|[3][0-1])\s*" 
-              title="請符合: YYYY/MM/DD" required>
-        <label for="category">類別*:</label>
-        <select name="category" id="category" required>
-          <option value="" selected disabled>類別</option>
-          {{#each categories}}
-          <option value="{{this.name}}">{{this.name}}</option>
-          {{/each}}
-        </select>
-        <label for="amount">金額*:</label>
-        <input type="number" name="amount" id="amount" placeholder="支出金額" required>
-        <button type="submit">新增支出紀錄</button>
+    <div class="col-md-6">
+      <form action="/expenses/new" method="POST" id="new-form">
+        <div>
+          <h1><strong>可新增支出紀錄</strong></h1>
+          <span><strong>*必填欄位</strong></span>
+        </div>
+        <div>
+          <label for="name">名稱*:</label>
+          <input type="text" name="name" id="name" placeholder="支出名稱" required>
+        </div>
+        <div>
+          <label for="date">日期*:</label>
+          {{!-- safari doesn't support type="date" --}}
+          <input type="text" name="date" id="date" placeholder="支出日期 e.g.格式: YYYY/MM/DD" 
+                pattern="\s*[0-9]{4}\/([1][0-2]|[0][1-9])\/([0][1-9]|[1-2][0-9]|[3][0-1])\s*" 
+                title="請符合: YYYY/MM/DD" required>
+        </div>
+        <div>
+          <label for="category">類別*:</label>
+          <select name="category" id="category" required>
+            <option value="" selected disabled>類別</option>
+            {{#each categories}}
+            <option value="{{this.name}}">{{this.name}}</option>
+            {{/each}}
+          </select>
+        </div>
+        <div>
+          <label for="amount">金額*:</label>
+          <input type="number" name="amount" id="amount" placeholder="支出金額" required>
+        </div>
       </form>
+      <div class="d-flex justify-content-center">
+        <button class="btn fas fa-edit text-dark fa-2x" type="submit" form="new-form">新增支出紀錄</button>
+      </div>
     </div>
-  </div>
 </div>
