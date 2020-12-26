@@ -1,6 +1,3 @@
-const Record = require('./models/Record')
-const Category = require('./models/Category')
-
 const fetchAllData = async (model, sortOption) => {
   try {
     //catch can detect err on Promise chain (tested)
