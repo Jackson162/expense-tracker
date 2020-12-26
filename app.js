@@ -2,7 +2,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
-const helpers = require('handlebars-helpers')()
+const helpers = require('handlebars-helpers')() //used in hbs
 
 const routes = require('./routes/index.js')
 require('./config/mongoose')
