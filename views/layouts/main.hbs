@@ -14,15 +14,16 @@
 
   <nav class="navbar justify-content-start navbar-light" style="background-color: rgb(255, 151, 151);">
     <a class="navbar-brand fas fa-coins" href="/">家庭記帳本</a>
+    {{#if isAuthenticated}}
     <a class="navbar-brand fas fa-sticky-note" href="/">支出明細</a>
     <a class="navbar-brand fas fa-balance-scale" href="/expenses/new">新增支出</a>
-    <form action="/users/logout" method="POST">
+    <form class="ml-auto" action="/users/logout" method="POST">
       <button class="navbar-brand" type="submit">登出</button>
     </form>
-
-    <a class="navbar-brand" href="/users/login">登入</a>
+    {{else}}
+    <a class="navbar-brand ml-auto" href="/users/login">登入</a>
     <a class="navbar-brand" href="/users/register">註冊</a>
-
+    {{/if}}
   </nav>
   {{{ body }}}
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
