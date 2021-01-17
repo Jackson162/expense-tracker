@@ -16,8 +16,11 @@ router.get('/register', (req, res) =>　{
   res.render('register')
 })
 
-router.post('/register', (req, res) => {
-  res.send('post register')
+router.post('/register', async (req, res) => {
+  const { name, email, password, confirmPassword } = req.body
+  await User.create({ name, email, password, confirmPassword })
+    .then(() => res.redirect('/users/login'))
+    .catch(err => console.log(err))
 })
 
 router.post('/logout', (req, res) => {
