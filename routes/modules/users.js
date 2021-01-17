@@ -2,15 +2,14 @@ const express = require('express')
 const Record = require('../../models/Record')
 const Category = require('../../models/Category')
 const User = require('../../models/User')
+const authenticatedLogin = require('../../utils/authenticatedLogin')
 const router = express.Router()
 
 router.get('/login', (req, res) => {
   res.render('login')
 })
 
-router.post('/login', (req, res) => {
-  
-})
+router.post('/login', authenticatedLogin)
 
 router.get('/register', (req, res) =>　{
   res.render('register')

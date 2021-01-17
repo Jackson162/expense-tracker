@@ -6,6 +6,7 @@ const helpers = require('handlebars-helpers')() //used in hbs
 const session = require('express-session')
 
 const routes = require('./routes/index.js')
+const usePassport = require('./config/passport')
 require('./config/mongoose')
 
 const app = express()
@@ -23,6 +24,8 @@ app.use(session({
   saveUninitialized: true,
   resave: false
 }))
+
+usePassport(app)
 
 app.use(routes)
 
