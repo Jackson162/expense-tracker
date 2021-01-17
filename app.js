@@ -3,6 +3,7 @@ const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const helpers = require('handlebars-helpers')() //used in hbs
+const session = require('express-session')
 
 const routes = require('./routes/index.js')
 require('./config/mongoose')
@@ -16,6 +17,12 @@ app.set('view engine', 'hbs')
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+
+app.use(session({
+  secret: 'JacksonSecret',
+  saveUninitialized: true,
+  resave: false
+}))
 
 app.use(routes)
 
