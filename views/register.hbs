@@ -1,0 +1,31 @@
+<div class="row mt-5">
+  <div class="col-md-6 m-auto">
+    <div class="card card-body">
+      <h1 class="text-center mt-3">註冊</h1>
+      {{!-- {{> message}} --}}
+      <form action="/users/register" method="POST">
+        <div class="form-group">
+          <label for="name">名字(可留白):</label>
+          <input type="text" id="name" name="name" class="form-control" placeholder="輸入名字" value="{{ name }}">
+        </div>
+        <div class="form-group">
+          <label for="email">信箱*:</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="輸入信箱" value="{{ email }}">
+        </div>
+        <div class="form-group">
+          <label for="password">密碼*:</label>
+          <input type="password" id="password" name="password" class="form-control" placeholder="輸入密碼"  value="{{ password }}">
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">請再確認密碼*:</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" class="form-control"
+            placeholder="再次輸入密碼"  value="{{ confirmPassword }}">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">註冊</button>
+      </form>
+      <p class="lead mt-4">
+        已經註冊了? <a href="/users/login">快點登入使用餐廳清單!!!</a>
+      </p>
+    </div>
+  </div>
+</div>
