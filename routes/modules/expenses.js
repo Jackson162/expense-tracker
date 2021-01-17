@@ -10,31 +10,37 @@ router.get('/new', async (req, res) => {
 })
 
 router.post('/new', (req, res) => {
+  const userId = req.user._id
   const newExpense = req.body
-  Record.create(newExpense)
+  newExpense.date = new Date(newExpense.date) //string input => date object
+  Record.create({ ...newExpense, userId})
     .then(() => res.redirect('/'))
-    .catch(err => err)
+    .catch(err => console.error(err))
 })
 
 router.get('/edit/:_id', async (req, res) => {
+  const userId = req.user._id
   const id = req.params._id
   const categories = await funcs.fetchAllData(Category, '_id')
-  const record = await funcs.fetchOneData(Record, id)
+  const record = await funcs.fetchOneData(Record, id, userId)
   const option = {}
   option[record.category] = true
   res.render('edit', { categories, record, option })
 })
 
 router.put('/edit/:_id', async (req, res) => {
+  const userId = req.user._id
   const id = req.params._id
   const editedInfo = req.body
-  await funcs.editOneData(Record, id, editedInfo)
+  // editedInfo.date = new Date(editedInfo.date)
+  await funcs.editOneData(Record, id, editedInfo, userId)
   res.redirect('/')
 })
 
 router.delete('/delete/:_id', async (req, res) => {
+  const userId = req.user._id
   const id = req.params._id
-  await funcs.deleteOneData(Record, id)
+  await funcs.deleteOneData(Record, id, userId)
   res.redirect('/')
 })
 

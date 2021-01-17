@@ -12,7 +12,7 @@
         <div>
           <label for="date">日期*:</label>
           {{!-- safari doesn't support type="date" --}}
-          <input type="text" name="date" id="date" placeholder="支出日期 e.g.格式: YYYY/MM/DD" 
+          <input type="text" name="date" id="date" placeholder="YYYY/MM/DD" 
                 pattern="\s*[0-9]{4}\/([1][0-2]|[0][1-9])\/([0][1-9]|[1-2][0-9]|[3][0-1])\s*" 
                 title="請符合: YYYY/MM/DD" required>
         </div>
@@ -28,6 +28,10 @@
         <div>
           <label for="amount">金額*:</label>
           <input type="number" name="amount" id="amount" placeholder="支出金額" required>
+        </div>
+        <div>
+          <label for="merchant">商家*:</label>
+          <input type="text" name="merchant" id="merchant" placeholder="消費商家" required>
         </div>
       </form>
       <div class="d-flex justify-content-center">
