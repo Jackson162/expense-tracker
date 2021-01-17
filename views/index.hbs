@@ -2,9 +2,16 @@
   <form class="d-flex justify-content-center align-items-center mt-3" action="/" method="GET" onchange="submit()">
     <div class="fa fa-list-alt fa-lg mr-1" aria-hidden="true" for="category">類別：</div>
     <select name="category" id="category">
-      <option value="all">全部類別</option>
+      <option value="all" {{#is selectedCategory 'all'}}selected{{/is}}>全部類別</option>
       {{#each categories}}
-      <option value="{{this.name}}" {{#is this.name ../option}}selected{{/is}}>{{this.name}}</option>
+      <option value="{{this.name}}" {{#is this.name ../selectedCategory}}selected{{/is}}>{{this.name}}</option>
+      {{/each}}
+    </select>
+    <div class="fas fa-calendar-alt fa-lg ml-2" aria-hidden="true" for="month">月份：</div>
+    <select name="month" id="month">
+      <option value="all" {{#is selectedMonth 'all'}}selected{{/is}}>01-12</option>
+      {{#each months}}
+      <option value="{{this}}" {{#is this ../selectedMonth}}selected{{/is}}>{{this}}</option>
       {{/each}}
     </select>
   </form>

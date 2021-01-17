@@ -2,10 +2,10 @@ const Categoty = require('./models/Category')
 
 const convertDateToString = (data) =>　{
   const year = data.date.getFullYear()
-  const month = Number(data.date.getMonth()) + 1 < 10? `0${data.date.getMonth()+1}` : `${data.date.getMonth()+1}`
+  const month = Number(data.date.getMonth()) + 1 < 10? `0${data.date.getMonth() + 1}` : `${data.date.getMonth() + 1}`
   const date = Number(data.date.getDate()) < 10? `0${data.date.getDate()}` : `${data.date.getDate()}`
-  const dateOfdata = `${year}/${month}/${date}`
-  return dateOfdata
+  const fullDate = `${year}/${month}/${date}`
+  return { fullDate, month }
 }
 
 const fetchAllData = async (model, sortOption, userId) => {
@@ -17,7 +17,7 @@ const fetchAllData = async (model, sortOption, userId) => {
     } else {
       allData = await model.find({ userId }).lean().sort(sortOption).then(allData => allData)
       allData = allData.map((data) => {
-        data.date = convertDateToString(data)
+        data.date = convertDateToString(data).fullDate
         return data
       })
     }
@@ -31,7 +31,7 @@ const fetchOneData = (model, _id, userId) => {
   return model.findOne({ _id, userId })
     .lean()
     .then(data => {
-      data.date = convertDateToString(data) 
+      data.date = convertDateToString(data).fullDate 
       return data
     })
     .catch(err => console.log(err))

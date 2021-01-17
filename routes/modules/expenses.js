@@ -23,9 +23,9 @@ router.get('/edit/:_id', async (req, res) => {
   const id = req.params._id
   const categories = await funcs.fetchAllData(Category, '_id')
   const record = await funcs.fetchOneData(Record, id, userId)
-  const option = {}
-  option[record.category] = true
-  res.render('edit', { categories, record, option })
+  const selectedCategory = {}
+  selectedCategory[record.category] = true
+  res.render('edit', { categories, record, selectedCategory })
 })
 
 router.put('/edit/:_id', async (req, res) => {

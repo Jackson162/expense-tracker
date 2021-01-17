@@ -20,7 +20,7 @@
         <select name="category" id="category" required>
           {{#each categories}}  
               {{!-- if use handlebars-helpers: {{#is this.name ../record.category}} --}} 
-            <option value="{{this.name}}" {{#if (lookup ../option [name])}}selected{{/if}}>{{this.name}}</option>
+            <option value="{{this.name}}" {{#if (lookup ../selectedCategory [name])}}selected{{/if}}>{{this.name}}</option>
           {{/each}}
         </select>
       </div>
