@@ -25,7 +25,7 @@
   <ul class="list-group">
     {{#each records}}
     <li class="list-group-item">
-      <div class="row">
+      <div class="row list-group-item-container">
         <div class="item-start">
               {{!-- err if using syntax: [this.category] or {{icons.name}} --}}
           <div class="fa-3x mr-1 {{#with (lookup ../icons [category])}}{{this.name}}{{/with}}"></div>
@@ -35,7 +35,7 @@
           </div>
         </div>
         
-        <div class="m-auto">商家:{{this.merchant}}</div>
+        <div class="item-merchant">商家:{{this.merchant}}</div>
         <div class="item-money">
           <div class="fas fa-money-bill-alt mr-1 fa-lg"></div>
           <div>：{{this.amount}}</div>

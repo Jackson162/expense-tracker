@@ -18,11 +18,11 @@
     <a class="navbar-brand fas fa-sticky-note" href="/">支出明細</a>
     <a class="navbar-brand fas fa-balance-scale" href="/expenses/new">新增支出</a>
     <form class="ml-auto" action="/users/logout" method="POST">
-      <button class="navbar-brand" type="submit">登出</button>
+      <button class="navbar-brand btn fas fa-sign-out-alt" type="submit">登出</button>
     </form>
     {{else}}
-    <a class="navbar-brand ml-auto" href="/users/login">登入</a>
-    <a class="navbar-brand" href="/users/register">註冊</a>
+    <a class="navbar-brand ml-auto fas fa-sign-in-alt" href="/users/login">登入</a>
+    <a class="navbar-brand fas fa-pen" href="/users/register">註冊</a>
     {{/if}}
   </nav>
   {{{ body }}}
