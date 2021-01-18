@@ -31,10 +31,7 @@ router.get('/', async (req, res) => {
       return record.category === selectedCategory
     }) : records
   }  
-  // records = records.map((record) => {
-  //   record.date = `${record.date.getFullYear()}/${record.date.getMonth()+1}/${record.date.getDate()}`
-  //   return record
-  // })
+  
   const totalAmount = records.reduce((acc, record) => {
     return acc + record.amount
   }, 0)

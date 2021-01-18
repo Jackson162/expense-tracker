@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
       if (err) return next(err);
       if (!user) {
         let { userInput, login_error } = info //info is data sent by third argument of done
-        console.log(login_error)
+        console.log('login_error:', login_error)
         if (!login_error) login_error = ['請輸入帳密']
         return res.render('login', { userInput, login_error })
       }
