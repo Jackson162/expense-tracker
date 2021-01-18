@@ -25,32 +25,44 @@
     {
       "name": "陶朱隱園",
       "category": "家居物業",
-      "date": "2020/12/31",
-      "amount": 1500000000
+      "date": "2020/02/02",
+      "amount": 1500000000,
+      "merchant": "威京集團"
     },
     {
       "name": "捷運",
       "category": "交通出行",
       "date": "2019/04/23",
-      "amount": 120
+      "amount": 120,
+      "merchant": "臺北大眾捷運股份有限公司"
     },
     {
       "name": "電影: 神力女超人",
       "category": "休閒娛樂",
-      "date": "2020/12/31",
-      "amount": "99"
+      "date": "2020/05/31",
+      "amount": "99",
+      "merchant": "美麗新宏匯"
     },
     {
       "name": "午餐: 教父牛排",
       "category": "餐飲食品",
-      "date": "2020/12/31",
-      "amount": 3600
+      "date": "2015/05/31",
+      "amount": 3600,
+      "merchant": "教父牛排"
     },
     {
       "name": "買凶殺人",
       "category": "其他",
       "date": "2020/12/31",
-      "amount": 500000
+      "amount": 500000,
+      "merchant": "暗殺教室"
+    },
+    {
+      "name": "買 ALPHA Camp 學期三",
+      "category": "其他",
+      "date": "2020/12/31",
+      "amount": 36000,
+      "merchant": "ALPHA Camp"
     }
   ]
 }

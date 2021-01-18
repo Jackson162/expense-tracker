@@ -1,18 +1,45 @@
-const data = require('./data.json')
+const records = require('./data.json').records
 const Record = require('../Record')
+const User = require('../User')
+const bcrypt = require('bcryptjs')
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 const db = require('../../config/mongoose')
+const fakeUsers = [
+  {
+    email: 'user1@example.com',
+    password: '12345678'
+  },
+  {
+    email: 'user2@example.com',
+    password: '12345678'
+  }
+]
 
-db.once('open', () => {
-    const records = data.records
-    for (record of records) {
-        Record.create({
-            name: record.name,
-            category: record.category,
-            date: record.date,
-            amount: record.amount
+db.once('open', async () => {
+  await new Promise((resolve, reject) => {
+    for (let i = 0; i < fakeUsers.length; i++) {
+      bcrypt
+        .genSalt(10)
+        .then(salt => bcrypt.hash(fakeUsers[i].password, salt))
+        .then(hash => User.create({
+          email: fakeUsers[i].email,
+          password: hash
+        }))
+        .then(user => {
+          const userId = user._id
+          return Promise.all(Array.from({ length: 3 }, (_, j) => Record.create(
+              { ...records[j + i*3 ], userId }
+            ))
+          ).then(() => {
+            console.log(`user${i} done`)
+            if (i === fakeUsers.length -1) resolve()
+          })
         })
     }
-    console.log('record seed data is created.')
+  })
+  process.exit()
 })
 
 // db.once('open', async () => {
