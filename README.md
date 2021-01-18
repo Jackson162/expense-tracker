@@ -9,7 +9,12 @@ Features
 2. 使用者可瀏覽不同分類的支出
 3. 使用者可新增支出項目
 4. 使用者可修該支出項目
-5. 使用者可刪除支出項目
+5. 使用者可刪除支出項目 <br>
+-----2021/01/18------
+6. 新增登入及註冊系統
+7. 新增Google登入功能
+8. 新增以月份篩選支出記錄功能
+
 
 
 prerequisites
@@ -43,11 +48,11 @@ git clone https://github.com/Jackson162/expense-tracker.git
 ```
 npm install
 ```
-3. 確認 mongoDB 執行後，連結 Robo 3T，建立一個資料庫，命名:
+3. 確認 mongoDB 執行後，連結 Robo 3T，建立一個空資料庫，命名為:
 ```
 expense-tracker
 ```
-4. 在終端機輸入指令來連結資料庫並新增種子資料:
+4. 在終端機輸入指令來連結資料庫並新增種子資料(請先確認資料庫是空的):
 ```
 npm run seed
 ```
@@ -59,3 +64,13 @@ npm run dev
 ```
 http://localhost/3000
 ```
+7. 使用假帳號登入:
+```
+email: 'user1@example.com',
+password: '12345678'
+
+email: 'user2@example.com',
+password: '12345678'
+
+```
+
